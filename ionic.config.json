@@ -1,0 +1,7 @@
+{
+  "name": "jackpot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
