@@ -1,0 +1,30 @@
+body {
+    background-color: aqua;
+}
+
+h1 {
+    color: gold;
+    text-align: center;
+    font-size: 50px;
+    position: relative;
+    top: 15%;
+    font-family: 'Casino Flat', sans-serif;
+    text-shadow: rgb(18, 18, 17) 3px 3px 7px;
+}
+
+button {
+    position: relative;
+    top: -100px; left: 10px;
+    height: 50px;
+    width: 100px;
+    background-color: black;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: rgb(143, 143, 140) 10px 2px 1px;
+}
+
+button h2 {
+    color: aliceblue;
+    position: relative;
+    top: -6px;
+}

@@ -1,20 +1,81 @@
-h1 {
+@import url('https://fonts.cdnfonts.com/css/casino');
+
+body {
+  background-color: goldenrod;
+}
+
+h1.title {
   text-align: center;
-  font-size: 35px;
+  font-size: 50px;
   position: relative;
   top: 5%;
+  font-family: 'Casino Flat', sans-serif;
+  text-shadow: rgb(224, 224, 76) 3px 3px 7px;
 }
 
 button {
-  background-color: aqua;
+  background-color: gold;
   box-sizing: border-box;
-  padding: 5px 10px;
-  box-shadow: rgb(0, 255, 255) 3px 3px 7px;
+  padding: 20px;
+  box-shadow: rgb(224, 224, 76) 3px 3px 7px ;
   margin-right: 20px;
   outline: none;
-  font-size: 35px;
+  font-size: 45px;
   height: 100px;
   width: 600px;
   position: relative;
-  left: 34%; top: -10%;
+  left: 34%; top: 70%;
+}
+
+.help {
+
+  button {
+    background-color: black;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: rgb(239, 236, 236) 3px 3px 7px ;
+    margin-right: 20px;
+    outline: none;
+    font-size: 20px;
+    height: 50px;
+    width: 120px;
+    position: relative;
+    left: 93%; top: -140px;
+  }
+
+  h2 {
+    color: white;
+    position: absolute;
+    bottom: 0%; right: 0%; left: 0%;
+  }
+
+  .help-modal {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    width: 40%;
+    height: 70%;
+    background-color: rgba(71, 65, 65, 0.8); /* Fond blanc transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid black;
+  }
+  h1 {
+    color: black;
+    align-items: center;
+    font-size: 40px;
+    text-decoration: solid;
+    font-weight: bolder;
+    position: absolute;
+    top: 0%;
+  }
+}
+
+button h2.play {
+  color: aliceblue;
+  font-size: 45px;
+  position: relative;
+  top: -20%;
+  font-family: 'Casino Shadow', sans-serif;
 }

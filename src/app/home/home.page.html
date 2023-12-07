@@ -1,2 +1,14 @@
-<h1>QUI VEUT GAGNER LE JACKPOT ?</h1>
-<button routerLink="/game">JOUEZ</button>
+<body>
+    <h1 class="title">QUI VEUT GAGNER LE JACKPOT ?</h1>
+    <button routerLink="/game"><h2 class="play">JOUEZ</h2></button>
+    <div class="help">
+        <button (click)="forHelp()">
+            <h2>HELP</h2>
+        </button>
+
+        <div *ngIf="showHelp" class="help-modal">
+            <h1>LES RÉGLES DU JEU <br><br></h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero pariatur labore qui officia dignissimos doloribus dicta, praesentium dolore quod nobis tempora reprehenderit amet molestiae magni id! Odio dolorum corrupti voluptatum.<br><br><br></p>
+        </div>
+    </div>
+</body>
