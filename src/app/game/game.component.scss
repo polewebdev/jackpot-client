@@ -12,7 +12,7 @@ h1 {
     text-shadow: rgb(18, 18, 17) 3px 3px 7px;
 }
 
-button {
+button.back {
     position: relative;
     top: -100px; left: 10px;
     height: 50px;
@@ -27,4 +27,28 @@ button h2 {
     color: aliceblue;
     position: relative;
     top: -6px;
+}
+
+img {
+    position: absolute;
+    top: 30%; left: 40%;
+}
+
+button.submit {
+    color: blue;
+    width: 10%;
+    height: 5%;
+    font-size: 20px;
+    position: absolute;
+    top: 90%; left: 45%;
+}
+
+.element-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 160px;
+    align-items: center;
+    color: red;
+    position: relative;
+    top: 10%; left: 0%;
 }

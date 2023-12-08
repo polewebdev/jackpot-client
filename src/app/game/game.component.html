@@ -1,5 +1,9 @@
 <body>
   <h1>QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
-  <button routerLink="/home"><h2>BACK</h2></button>
+  <button routerLink="/home" class="back"><h2>BACK</h2></button>
+  <div *ngFor="let element of elements" class="element-container">
+    <img [src]="element.imageURL" alt="Image {{element.id}}">
+  </div>
+  <button class="submit" (click)="startAnimation()">Submit</button>
 </body>
 
