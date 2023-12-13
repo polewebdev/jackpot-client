@@ -1,9 +1,30 @@
 <body>
   <h1>QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
   <button routerLink="/home" class="back"><h2>BACK</h2></button>
-  <div *ngFor="let element of elements" class="element-container">
-    <img [src]="element.imageURL" alt="Image {{element.id}}">
+  <div id="slot-machine">
+    <div id="slot-body">
+      <div id="slot-frame"></div>
+    </div>
   </div>
-  <button class="submit" (click)="startAnimation()">Submit</button>
+  <div class="doors">
+    <div class="door">
+      <div class="boxes" [ngClass]="{ 'spinning': isSpinning }">
+        <img *ngFor="let element of leftelements" [src]="element.imageURL" alt="Left Element" />
+      </div>
+    </div>
+    <div class="door">
+      <div class="boxes" [ngClass]="{ 'spinning': isSpinning }">
+        <img *ngFor="let element of centerelements" [src]="element.imageURL" alt="Center Element" />
+      </div>
+    </div>
+    <div class="door">
+      <div class="boxes" [ngClass]="{ 'spinning': isSpinning }">
+        <img *ngFor="let element of rightelements" [src]="element.imageURL" alt="Right Element" />
+      </div>
+    </div>
+  </div>
+
+  <button class="play" (click)="startAnimation()">PLAY</button>
+  <button class="stop">STOP</button>
 </body>
 

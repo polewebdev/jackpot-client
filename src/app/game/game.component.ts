@@ -1,92 +1,77 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Elements } from '../models/elements.model';
+import { Component, Input, OnInit} from '@angular/core';
+import { centerElements, leftElements, rightElements } from '../models/elements.model';
+import { ElementsServices } from '../services/elements.service';
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent {
+export class GameComponent implements OnInit{
 
-  elements: Elements[] = [
-    {
-        id: 1,
-        imageURL: "../../assets/bar.png"
-    },
-    {
-        id: 2,
-        imageURL: '../../assets/citron.png'
-    },
-    {
-        id: 3,
-        imageURL: '../../assets/cerise.png'
-    },
-    {
-        id: 4,
-        imageURL: '../../assets/cloche.png'
-    },
-    {
-      id: 5,
-      imageURL: '../../assets/raisin.png'
-    },
-    {
-      id: 6,
-      imageURL: '../../assets/fer.png'
-    },
-    {
-      id: 7,
-      imageURL: '../../assets/pièce.png'
-    },
-    {
-      id: 8,
-      imageURL: '../../assets/sept.png'
-    },
-    {
-      id: 9,
-      imageURL: '../../assets/violet.png'
-    },
-    {
-      id: 10,
-      imageURL: '../../assets/coeur.png'
-    },
-  ]
+  leftStopIndex: number = 0
+  centerStopIndex: number = 0
+  rightStopIndex: number = 0
+  private readonly spinDuration = 4000
+  isSpinning: boolean = false;
+  leftelements: leftElements[] = []
+  rightelements: rightElements[] = []
+  centerelements: centerElements[] = []
+  displayElements: (rightElements | centerElements | leftElements)[] = []
 
-  displayElements: Elements[] = []
+  constructor(private elementService: ElementsServices) {
+    this.leftelements = this.elementService.getLeftElements()
+    this.centerelements = this.elementService.getCenterElements()
+    this.rightelements = this.elementService.getRightElements()
 
-  private elapsedTime: number = 0
-  private intervalID: any
-  private totalTimes: number = 7000
+    this.displayElements = [...this.leftelements, ...this.centerelements, ...this.rightelements]
+  }
 
-  moveElements(): void {
-    const lastElement = this.elements.pop()
-    if (lastElement) {
-      this.elements.unshift(lastElement)
-    }
+  ngOnInit(): void {
 
-    this.elapsedTime += 700
-    if (this.elapsedTime >= this.totalTimes) {
-      clearInterval(this.intervalID)
-    }
   }
 
   startAnimation(): void {
-    this.stopAnimation()
+    if (!this.isSpinning) {
+      this.isSpinning = true
 
-    this.elements = this.elements.slice(0, 3)
-    this.shuffleArray(this.elements)
-    this.intervalID = setInterval(() => {
-      this.moveElements();
-    }, 100)
-  }
+      this.leftStopIndex = this.getRandomIndex(this.leftelements.length)
+      this.centerStopIndex = this.getRandomIndex(this.centerelements.length)
+      this.rightStopIndex = this.getRandomIndex(this.rightelements.length)
 
-  stopAnimation(): void {
-    clearInterval(this.intervalID)
-    this.elapsedTime = 0
-  }
+      const leftDelay = Math.floor(Math.random() * this.spinDuration)
+      const centerDelay = Math.floor(Math.random() * this.spinDuration)
+      const rightDelay = Math.floor(Math.random() * this.spinDuration)
 
-  private shuffleArray(array: any): void {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]
+      setTimeout(() => {
+        this.isSpinning = false;
+      }, Math.max(leftDelay, centerDelay, rightDelay) + 500);
+
+      setTimeout(() => {
+        this.resetAnimation();
+      }, this.spinDuration);
     }
+  }
+
+  private resetAnimation(): void {
+    this.leftStopIndex = 0
+    this.centerStopIndex = 0
+    this.rightStopIndex = 0
+  }
+
+  private getRandomIndex(max: number): number {
+    return Math.floor(Math.random() * max);
+  }
+
+
+  shuffle(array: any[]): any[] {
+    let currentIndex = array.length, randomIndex;
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+    }
+    return array;
   }
 }
