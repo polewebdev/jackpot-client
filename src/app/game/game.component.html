@@ -7,24 +7,34 @@
     </div>
   </div>
   <div class="doors">
-    <div class="door">
-      <div class="boxes" [ngClass]="{ 'spinning': isSpinning }">
-        <img *ngFor="let element of leftelements" [src]="element.imageURL" alt="Left Element" />
+    <div class="door left">
+      <div class="boxes" [ngClass]="{'spinning': isLeftSpinning}">
+        <div class="box" *ngFor="let element of leftelements">
+          <img [src]="element.imageURL" alt="Image {{element.id}}">
+        </div>
       </div>
     </div>
-    <div class="door">
-      <div class="boxes" [ngClass]="{ 'spinning': isSpinning }">
-        <img *ngFor="let element of centerelements" [src]="element.imageURL" alt="Center Element" />
+    <div class="door center">
+      <div class="boxes" [ngClass]="{'spinning': isRightSpinning}">
+        <div class="box" *ngFor="let element of rightelements">
+          <img [src]="element.imageURL" alt="Image {{element.id}}">
+        </div>
       </div>
     </div>
-    <div class="door">
-      <div class="boxes" [ngClass]="{ 'spinning': isSpinning }">
-        <img *ngFor="let element of rightelements" [src]="element.imageURL" alt="Right Element" />
+    <div class="door right">
+      <div class="boxes" [ngClass]="{'spinning': isCenterSpinning}">
+        <div class="box" *ngFor="let element of centerelements">
+          <img [src]="element.imageURL" alt="Image {{element.id}}">
+        </div>
       </div>
     </div>
   </div>
+  
+  <button class="play" (click)="startAnimation()">PLAY</button>
+  <button class="stop" (click)="stopAnimation()">STOP</button>
+  
 
   <button class="play" (click)="startAnimation()">PLAY</button>
-  <button class="stop">STOP</button>
+  <button class="stop" (click)="stopAnimation()">STOP</button>
 </body>
 

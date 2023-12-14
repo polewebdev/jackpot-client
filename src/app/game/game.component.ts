@@ -9,11 +9,13 @@ import { ElementsServices } from '../services/elements.service';
 })
 export class GameComponent implements OnInit{
 
-  leftStopIndex: number = 0
-  centerStopIndex: number = 0
-  rightStopIndex: number = 0
-  private readonly spinDuration = 4000
-  isSpinning: boolean = false;
+  leftStopIndex: number = 0;
+  centerStopIndex: number = 0;
+  rightStopIndex: number = 0;
+  private elapsedTime: number = 0
+  private intervalID: any
+  private totalTime: number = 7000
+  private isAnimationStarted: boolean = false
   leftelements: leftElements[] = []
   rightelements: rightElements[] = []
   centerelements: centerElements[] = []
@@ -23,46 +25,80 @@ export class GameComponent implements OnInit{
     this.leftelements = this.elementService.getLeftElements()
     this.centerelements = this.elementService.getCenterElements()
     this.rightelements = this.elementService.getRightElements()
-
-    this.displayElements = [...this.leftelements, ...this.centerelements, ...this.rightelements]
   }
 
   ngOnInit(): void {
 
   }
 
-  startAnimation(): void {
-    if (!this.isSpinning) {
-      this.isSpinning = true
+  isLeftSpinning: boolean = false
+  isRightSpinning: boolean = false
+  isCenterSpinning: boolean = false
 
-      this.leftStopIndex = this.getRandomIndex(this.leftelements.length)
-      this.centerStopIndex = this.getRandomIndex(this.centerelements.length)
-      this.rightStopIndex = this.getRandomIndex(this.rightelements.length)
+  moveElements(): void {
+    const lastElement = this.displayElements.pop()
+    if (lastElement) {
+      this.displayElements.unshift(lastElement)
+    }
 
-      const leftDelay = Math.floor(Math.random() * this.spinDuration)
-      const centerDelay = Math.floor(Math.random() * this.spinDuration)
-      const rightDelay = Math.floor(Math.random() * this.spinDuration)
-
-      setTimeout(() => {
-        this.isSpinning = false;
-      }, Math.max(leftDelay, centerDelay, rightDelay) + 500);
-
-      setTimeout(() => {
-        this.resetAnimation();
-      }, this.spinDuration);
+    this.elapsedTime += 700
+    if (this.elapsedTime >= this.totalTime) {
+      clearInterval(this.intervalID)
     }
   }
 
-  private resetAnimation(): void {
-    this.leftStopIndex = 0
-    this.centerStopIndex = 0
-    this.rightStopIndex = 0
+  initializeAnimation(): void {
+    this.shuffleArray(this.leftelements)
+    this.shuffleArray(this.centerelements)
+    this.shuffleArray(this.rightelements)
+    this.displayElements = [...this.leftelements, ...this.centerelements, ...this.rightelements];
+
+    this.intervalID = setInterval(() => {
+      this.moveElements()
+    }, 100);
   }
 
-  private getRandomIndex(max: number): number {
-    return Math.floor(Math.random() * max);
+  startAnimation(): void {
+
+    const leftDelay = Math.floor(Math.random() * 5000) + 2000
+    const centerDelay = Math.floor(Math.random() * 5000) + 2000
+    const rightDelay = Math.floor(Math.random() * 5000) + 2000
+
+    this.isLeftSpinning = true
+    setTimeout(() => {
+      this.isLeftSpinning = false
+    }, leftDelay);
+
+    this.isCenterSpinning = true
+    setTimeout(() => {
+      this.isCenterSpinning = false
+    }, centerDelay);
+
+    this.isRightSpinning = true
+    setTimeout(() => {
+      this.isRightSpinning = false
+    }, rightDelay);
+
+
+    this.isAnimationStarted = true
+    if (this.isAnimationStarted)
+      this.initializeAnimation()
   }
 
+  private shuffleArray(array: any): void {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]
+    }
+  }
+
+  stopAnimation(): void {
+    this.isLeftSpinning = false
+    this.isCenterSpinning = false
+    this.isRightSpinning = false
+    clearInterval(this.intervalID)
+    this.elapsedTime = 0
+  }
 
   shuffle(array: any[]): any[] {
     let currentIndex = array.length, randomIndex;
