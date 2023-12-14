@@ -1,9 +1,16 @@
 <body>
   <h1>QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
   <button routerLink="/home" class="back"><h2>BACK</h2></button>
+  <button class="gain">$</button>
   <div id="slot-machine">
     <div id="slot-body">
-      <div id="slot-frame"></div>
+      <div id="slot-frame">
+        <div id="slot-frame-2">
+          <div id="slot-numbers">
+            <h2>****VOTRE GAIN****</h2>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="doors">
@@ -30,11 +37,7 @@
     </div>
   </div>
   
-  <button class="play" (click)="startAnimation()">PLAY</button>
-  <button class="stop" (click)="stopAnimation()">STOP</button>
-  
-
-  <button class="play" (click)="startAnimation()">PLAY</button>
-  <button class="stop" (click)="stopAnimation()">STOP</button>
+  <button class='play' (click)="startAnimation()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">PLAY</button>
+  <button class='stop' (click)="stopAnimation()">STOP</button>
 </body>
 
