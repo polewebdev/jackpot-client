@@ -1,7 +1,18 @@
 <body>
-  <h1>QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
+  <h1 class="title">QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
   <button routerLink="/home" class="back"><h2>BACK</h2></button>
   <button class="gain">$</button>
+  <button class="music" (click)="playMusic()">Play Music</button>
+  <div class="help">
+    <button (click)="forHelp()">
+        <h2>HELP</h2>
+    </button>
+
+    <div *ngIf="showHelp" class="help-modal">
+        <h1 class="rules">LES RÉGLES DU JEU <br><br></h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero pariatur labore qui officia dignissimos doloribus dicta, praesentium dolore quod nobis tempora reprehenderit amet molestiae magni id! Odio dolorum corrupti voluptatum.<br><br><br></p>
+    </div>
+  </div>
   <div id="slot-machine">
     <div id="slot-body">
       <div id="slot-frame">
@@ -36,8 +47,8 @@
       </div>
     </div>
   </div>
-  
   <button class='play' (click)="startAnimation()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">PLAY</button>
   <button class='stop' (click)="stopAnimation()">STOP</button>
+
 </body>
 

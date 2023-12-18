@@ -9,9 +9,11 @@ import { ElementsServices } from '../services/elements.service';
 })
 export class GameComponent implements OnInit{
 
-  leftStopIndex: number = 0;
-  centerStopIndex: number = 0;
-  rightStopIndex: number = 0;
+  leftStopIndex: number = 0
+  audio: HTMLAudioElement | null = null
+  centerStopIndex: number = 0
+  rightStopIndex: number = 0
+  showHelp: boolean = false
   private elapsedTime: number = 0
   private intervalID: any
   private totalTime: number = 7000
@@ -34,6 +36,10 @@ export class GameComponent implements OnInit{
   isLeftSpinning: boolean = false
   isRightSpinning: boolean = false
   isCenterSpinning: boolean = false
+
+  forHelp(): void {
+    this.showHelp = !this.showHelp
+  }
 
   moveElements(): void {
     const lastElement = this.displayElements.pop()
@@ -109,5 +115,15 @@ export class GameComponent implements OnInit{
       [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
     }
     return array;
+  }
+
+  playMusic(): void {
+    if (this.audio) {
+      this.audio.pause()
+      this.audio.currentTime = 0
+    } else {
+      this.audio = new Audio("../../assets/EDM Evolution 15-12-2023 12-46.wav")
+      this.audio.play()
+    }
   }
 }

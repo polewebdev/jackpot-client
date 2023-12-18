@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit{
 
-  showHelp: boolean = false
 
   constructor() {}
 
@@ -15,7 +14,5 @@ export class HomePage implements OnInit{
     
   }
 
-  forHelp(): void {
-    this.showHelp = !this.showHelp
-  }
+
 }
