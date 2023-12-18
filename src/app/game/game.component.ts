@@ -10,7 +10,9 @@ import { ElementsServices } from '../services/elements.service';
 export class GameComponent implements OnInit{
 
   leftStopIndex: number = 0
+  slotNumbersElement: number = 400000
   audio: HTMLAudioElement | null = null
+  volume: number = 0.5
   centerStopIndex: number = 0
   rightStopIndex: number = 0
   showHelp: boolean = false
@@ -46,7 +48,6 @@ export class GameComponent implements OnInit{
     if (lastElement) {
       this.displayElements.unshift(lastElement)
     }
-
     this.elapsedTime += 700
     if (this.elapsedTime >= this.totalTime) {
       clearInterval(this.intervalID)
@@ -69,6 +70,7 @@ export class GameComponent implements OnInit{
     const leftDelay = Math.floor(Math.random() * 5000) + 2000
     const centerDelay = Math.floor(Math.random() * 5000) + 2000
     const rightDelay = Math.floor(Math.random() * 5000) + 2000
+
 
     this.isLeftSpinning = true
     setTimeout(() => {
@@ -104,6 +106,7 @@ export class GameComponent implements OnInit{
     this.isRightSpinning = false
     clearInterval(this.intervalID)
     this.elapsedTime = 0
+
   }
 
   shuffle(array: any[]): any[] {
@@ -118,12 +121,28 @@ export class GameComponent implements OnInit{
   }
 
   playMusic(): void {
-    if (this.audio) {
+    if (this.audio && !this.audio.paused) {
+      this.audio.volume = this.volume
       this.audio.pause()
       this.audio.currentTime = 0
     } else {
-      this.audio = new Audio("../../assets/EDM Evolution 15-12-2023 12-46.wav")
+      this.audio = new Audio("../../assets/music.wav")
+      this.audio.volume = this.volume
       this.audio.play()
+    }
+  }
+
+  raiseVolume(): void {
+    if (this.audio) {
+      this.volume = Math.min(1, this.volume + 0.1)
+      this.audio.volume = this.volume
+    }
+  }
+
+  lowerVolume(): void {
+    if (this.audio) {
+      this.volume = Math.max(0, this.volume - 0.1)
+      this.audio.volume = this.volume
     }
   }
 }
