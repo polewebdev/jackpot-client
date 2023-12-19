@@ -44,7 +44,7 @@ export class elementsArray {
           imageURL: '../../assets/coeur.png'
         },
       ]
-      center_elements: centerElements[] = [
+      right_elements: rightElements[] = [
         {
             id: 1,
             imageURL: "../../assets/fer.png"
@@ -86,7 +86,7 @@ export class elementsArray {
           imageURL: '../../assets/sept.png'
         },
       ]
-      right_elements: rightElements[] = [
+      center_elements: centerElements[] = [
         {
             id: 1,
             imageURL: "../../assets/raisin.png"

@@ -16,13 +16,14 @@ export class GameComponent implements OnInit{
   centerStopIndex: number = 0
   rightStopIndex: number = 0
   showHelp: boolean = false
+  showEarningsTable: boolean = false
   private elapsedTime: number = 0
   private intervalID: any
   private totalTime: number = 7000
   private isAnimationStarted: boolean = false
   leftelements: leftElements[] = []
-  rightelements: rightElements[] = []
   centerelements: centerElements[] = []
+  rightelements: rightElements[] = []
   displayElements: (rightElements | centerElements | leftElements)[] = []
 
   constructor(private elementService: ElementsServices) {
@@ -32,7 +33,7 @@ export class GameComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
+    
   }
 
   isLeftSpinning: boolean = false
@@ -43,6 +44,37 @@ export class GameComponent implements OnInit{
     this.showHelp = !this.showHelp
   }
 
+  forEarningsTable(): void {
+    this.showEarningsTable = !this.showEarningsTable
+  }
+
+  checkCitronCombinaison(): void {
+    const isCitronCombination = (
+      (this.leftelements[0].imageURL === '../../assets/citron.png' &&
+      this.centerelements[0].imageURL === '../../assets/citron.png' &&
+      this.rightelements[0].imageURL === '../../assets/citron.png') ||
+
+      (this.leftelements[1].imageURL === '../../assets/citron.png' &&
+      this.centerelements[1].imageURL === '../../assets/citron.png' &&
+      this.rightelements[1].imageURL === '../../assets/citron.png') ||
+
+      (this.leftelements[2].imageURL === '../../assets/citron.png' &&
+      this.centerelements[2].imageURL === '../../assets/citron.png' &&
+      this.rightelements[2].imageURL === '../../assets/citron.png') ||
+
+      (this.leftelements[0].imageURL === '../../assets/citron.png' &&
+      this.centerelements[2].imageURL === '../../assets/citron.png' &&
+      this.rightelements[1].imageURL === '../../assets/citron.png') ||
+
+      (this.leftelements[2].imageURL === '../../assets/citron.png' &&
+      this.centerelements[0].imageURL === '../../assets/citron.png' &&
+      this.rightelements[1].imageURL === '../../assets/citron.png')
+      );
+      if (isCitronCombination) {
+        console.log('Combinaison de citron détectée !');
+      }
+  }
+
   moveElements(): void {
     const lastElement = this.displayElements.pop()
     if (lastElement) {
@@ -50,9 +82,10 @@ export class GameComponent implements OnInit{
     }
     this.elapsedTime += 700
     if (this.elapsedTime >= this.totalTime) {
-      clearInterval(this.intervalID)
+        clearInterval(this.intervalID)
+        this.checkCitronCombinaison()
+      }
     }
-  }
 
   initializeAnimation(): void {
     this.shuffleArray(this.leftelements)
@@ -66,11 +99,9 @@ export class GameComponent implements OnInit{
   }
 
   startAnimation(): void {
-
     const leftDelay = Math.floor(Math.random() * 5000) + 2000
     const centerDelay = Math.floor(Math.random() * 5000) + 2000
     const rightDelay = Math.floor(Math.random() * 5000) + 2000
-
 
     this.isLeftSpinning = true
     setTimeout(() => {
@@ -86,7 +117,6 @@ export class GameComponent implements OnInit{
     setTimeout(() => {
       this.isRightSpinning = false
     }, rightDelay);
-
 
     this.isAnimationStarted = true
     if (this.isAnimationStarted)
@@ -106,7 +136,6 @@ export class GameComponent implements OnInit{
     this.isRightSpinning = false
     clearInterval(this.intervalID)
     this.elapsedTime = 0
-
   }
 
   shuffle(array: any[]): any[] {

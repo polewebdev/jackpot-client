@@ -1,7 +1,7 @@
 <body>
   <h1 class="title">QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
   <button routerLink="/home" class="back"><h2>BACK</h2></button>
-  <button class="gain">$</button>
+  <button class="gain" (click)="forEarningsTable()">$</button>
   <div class="help">
     <button (click)="forHelp()">
       <h2>HELP</h2>
@@ -55,6 +55,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="tableau-des-gains" *ngIf="showEarningsTable">
+    <h2 class="tableau-des-gains-title">TABLEAU DES GAINS</h2>
+    <div class="Earnings-image-1"></div>
+    <div class="Earnings-image-2"></div>
   </div>
   <button class='play' (click)="startAnimation()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">PLAY</button>
   <button class='stop' (click)="stopAnimation()">STOP</button>
