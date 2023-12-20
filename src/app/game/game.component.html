@@ -58,8 +58,23 @@
   </div>
   <div class="tableau-des-gains" *ngIf="showEarningsTable">
     <h2 class="tableau-des-gains-title">TABLEAU DES GAINS</h2>
-    <div class="Earnings-image-1"></div>
-    <div class="Earnings-image-2"></div>
+    <button class="quit-tableau" (click)="forEarningsTable()">x</button>
+    <div class="Earnings-left" *ngFor="let gains of gainelementleft">
+      <div id="Earnings-left-image">
+        <img [src]="gains.imageURL" alt="Image {{gains.id}}">
+      </div>
+      <div id="Earnings-left-text">
+        <p>{{gains.gain}}</p>
+      </div>
+    </div>
+    <div class="Earnings-right" *ngFor="let gainsr of gainelementright">
+      <div id="Earnings-right-image">
+        <img [src]="gainsr.imageURL" alt="Image {{gainsr.id}}">
+      </div>
+      <div id="Earnings-right-text">
+        <p>{{gainsr.gain}}</p>
+      </div>
+    </div>
   </div>
   <button class='play' (click)="startAnimation()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">PLAY</button>
   <button class='stop' (click)="stopAnimation()">STOP</button>

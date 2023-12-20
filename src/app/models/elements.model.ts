@@ -12,3 +12,15 @@ export class centerElements {
     id!: number
     imageURL!: string
 }
+
+export class gainElementLeft {
+    id!: number
+    imageURL!: string
+    gain!: string
+}
+
+export class gainElementRight {
+    id!: number
+    imageURL!: string
+    gain!: string
+}

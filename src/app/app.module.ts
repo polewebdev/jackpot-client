@@ -12,11 +12,12 @@ import { RightElementsComponent } from './right-elements/right-elements.componen
 import { elementsArray } from './elementsarray/elements.array';
 import { LeftElementsComponent } from './left-elements/left-elements.component';
 import { CenterElementsComponent } from './center-elements/center-elements.component';
+import { Combinaisons } from './combinaison/checkcombinaison';
 
 @NgModule({
   declarations: [AppComponent, GameComponent, RightElementsComponent, LeftElementsComponent, CenterElementsComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ElementsServices, elementsArray],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ElementsServices, elementsArray, Combinaisons],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

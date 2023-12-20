@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { elementsArray } from "../elementsarray/elements.array";
-import { centerElements, leftElements, rightElements } from "../models/elements.model";
+import { centerElements, gainElementLeft, gainElementRight, leftElements, rightElements } from "../models/elements.model";
 
 @Injectable ({
     providedIn: 'root'
@@ -19,5 +19,13 @@ export class ElementsServices {
 
     getRightElements(): rightElements[] {
         return this.elementsArray.right_elements
+    }
+
+    getGainElementRight(): gainElementRight[] {
+        return this.elementsArray.gainElementRight
+    }
+
+    getGainElementLeft(): gainElementLeft[] {
+        return this.elementsArray.gainElementLeft
     }
 }
