@@ -1,30 +1,29 @@
 import { centerElements, gainElementLeft, gainElementRight, leftElements, rightElements } from '../models/elements.model';
 
 export class Combinaisons {
-    checkCitronCombinaisons(leftelements: leftElements[],
+    checkCombinaisons(leftelements: leftElements[],
         centerelements: centerElements[],
-        rightelements: rightElements[]): boolean {
+        rightelements: rightElements[], image: string): boolean {
         return (
-          (leftelements[0].imageURL === '../../assets/citron.png' &&
-          centerelements[0].imageURL === '../../assets/citron.png' &&
-          rightelements[0].imageURL === '../../assets/citron.png') ||
-    
-          (leftelements[1].imageURL === '../../assets/citron.png' &&
-          centerelements[1].imageURL === '../../assets/citron.png' &&
-          rightelements[1].imageURL === '../../assets/citron.png') ||
-    
-          (leftelements[2].imageURL === '../../assets/citron.png' &&
-          centerelements[2].imageURL === '../../assets/citron.png' &&
-          rightelements[2].imageURL === '../../assets/citron.png') ||
-    
-          (leftelements[0].imageURL === '../../assets/citron.png' &&
-          centerelements[2].imageURL === '../../assets/citron.png' &&
-          rightelements[1].imageURL === '../../assets/citron.png') ||
-    
-          (leftelements[2].imageURL === '../../assets/citron.png' &&
-          centerelements[0].imageURL === '../../assets/citron.png' &&
-          rightelements[1].imageURL === '../../assets/citron.png')
-          );
-          
-      }
+            (leftelements[0].imageURL === image &&
+            centerelements[0].imageURL === image &&
+            rightelements[0].imageURL === image) ||
+
+            (leftelements[1].imageURL === image &&
+            centerelements[1].imageURL === image &&
+            rightelements[1].imageURL === image) ||
+
+            (leftelements[2].imageURL === image &&
+            centerelements[2].imageURL === image &&
+            rightelements[2].imageURL === image) ||
+
+            (leftelements[0].imageURL === image &&
+            centerelements[2].imageURL === image &&
+            rightelements[1].imageURL === image) ||
+
+            (leftelements[2].imageURL === image &&
+            centerelements[0].imageURL === image &&
+            rightelements[1].imageURL === image)
+        )
+    }
 }

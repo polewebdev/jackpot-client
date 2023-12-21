@@ -18,6 +18,7 @@ export class GameComponent implements OnInit{
   rightStopIndex: number = 0
   showHelp: boolean = false
   showEarningsTable: boolean = false
+  private isAnimationInProgress: boolean = false
   private elapsedTime: number = 0
   private intervalID: any
   private totalTime: number = 7000
@@ -53,18 +54,100 @@ export class GameComponent implements OnInit{
     this.showEarningsTable = !this.showEarningsTable
   }
 
-  checkCitronCombination(): void {
-    const isCitronCombination = this.checkcombinaison.checkCitronCombinaisons(
-      this.leftelements,
-      this.centerelements,
-      this.rightelements
-    );
-
-    if (isCitronCombination) {
-      console.log('Combinaison de citron détectée !');
-    }
+  checkCombinations(): void {
+      const isCitronCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/citron.png'
+      )
+      const isCeriseCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/cerise.png'
+      );
+      const isBarCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/bar.png'
+      );
+      const isClocheCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/cloche.png'
+      );
+      const isCoeurCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/coeur.png'
+      );
+      const isSeptCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/sept.png'
+      );
+      const isPieceCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/pièce.png'
+      );
+      const isRaisinCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/raisin.png'
+      );
+      const isVioletCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/violet.png'
+      );
+      const isFerCombination = this.checkcombinaison.checkCombinaisons(
+        this.leftelements,
+        this.centerelements,
+        this.rightelements,
+        '../../assets/fer.png'
+      );
+  
+  
+      if (isCitronCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 2000
+      }
+      if (isCeriseCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 1000
+      }
+      if (isBarCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 100000
+      }
+      if (isClocheCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 3000
+      }
+      if (isCoeurCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 5000
+      }
+      if (isSeptCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 1000000
+      }
+      if (isPieceCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 500000
+      }
+      if (isRaisinCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 4000
+      }
+      if (isVioletCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 6000
+      }
+      if (isFerCombination) {
+        this.slotNumbersElement = this.slotNumbersElement + 7000
+      }
   }
-
 
   moveElements(): void {
     const lastElement = this.displayElements.pop()
@@ -74,7 +157,7 @@ export class GameComponent implements OnInit{
     this.elapsedTime += 700
     if (this.elapsedTime >= this.totalTime) {
         clearInterval(this.intervalID)
-        this.checkCitronCombination()
+        // this.checkCombinations()
       }
     }
 
@@ -90,34 +173,39 @@ export class GameComponent implements OnInit{
   }
 
   startAnimation(): void {
-    const leftDelay = Math.floor(Math.random() * 5000) + 2000
-    const centerDelay = Math.floor(Math.random() * 5000) + 2000
-    const rightDelay = Math.floor(Math.random() * 5000) + 2000
+    const leftDelay = 2000
+    const centerDelay = 3000
+    const rightDelay = 4000
 
     this.isLeftSpinning = true
     setTimeout(() => {
       this.isLeftSpinning = false
+      this.checkCombinations()
     }, leftDelay);
-
+    
     this.isCenterSpinning = true
     setTimeout(() => {
       this.isCenterSpinning = false
     }, centerDelay);
-
+    
     this.isRightSpinning = true
     setTimeout(() => {
       this.isRightSpinning = false
-    }, rightDelay);
-
+      this.isAnimationInProgress = false
+      this.checkCombinations()
+    }, leftDelay + centerDelay + rightDelay);
+    
+    this.isAnimationInProgress = true
     this.isAnimationStarted = true
     if (this.isAnimationStarted)
-      this.initializeAnimation()
-  }
+    this.initializeAnimation()
+  // this.slotNumbersElement -= 10
+}
 
-  private shuffleArray(array: any): void {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]
+private shuffleArray(array: any): void {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]
     }
   }
 
@@ -125,9 +213,11 @@ export class GameComponent implements OnInit{
     this.isLeftSpinning = false
     this.isCenterSpinning = false
     this.isRightSpinning = false
-    clearInterval(this.intervalID)
-    this.checkCitronCombination()
-    this.elapsedTime = 0
+    setTimeout(() => {
+      clearInterval(this.intervalID)
+      this.checkCombinations()
+      this.elapsedTime = 0
+    }, this.totalTime)
   }
 
   shuffle(array: any[]): any[] {

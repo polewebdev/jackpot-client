@@ -137,49 +137,49 @@ export class elementsArray {
         {
           id: 2,
           imageURL: '../../assets/cerise.png',
-          gain: 'x3 1 000 JETONS'
+          gain: 'x3  1 000 JETONS'
         },
         {
           id: 3,
           imageURL: '../../assets/citron.png',
-          gain: 'x3 2 000 JETONS'
+          gain: 'x3  2 000 JETONS'
         },
         {
           id: 4,
           imageURL: '../../assets/cloche.png',
-          gain: 'x3 3 000 JETONS'
+          gain: 'x3  3 000 JETONS'
         },
         {
           id: 5,
           imageURL: '../../assets/coeur.png',
-          gain: 'x3 4 000 JETONS'
+          gain: 'x3  4 000 JETONS'
         },
       ]
       gainElementRight: gainElementRight[] = [
         {
           id: 1,
           imageURL: '../../assets/sept.png',
-          gain: 'x3 1 000 000 JETONS'
+          gain: 'x3  1 000 000 JETONS'
         },
         {
           id: 2,
           imageURL: '../../assets/pièce.png',
-          gain: 'x3 500 000 JETONS'
+          gain: 'x3  500 000 JETONS'
         },
         {
           id: 3,
           imageURL: '../../assets/raisin.png',
-          gain: 'x3 5 000 JETONS'
+          gain: 'x3  5 000 JETONS'
         },
         {
           id: 4,
           imageURL: '../../assets/violet.png',
-          gain: 'x3 6 000 JETONS'
+          gain: 'x3  6 000 JETONS'
         },
         {
           id: 5,
           imageURL: '../../assets/fer.png',
-          gain: 'x3 7 000 JETONS'
+          gain: 'x3  7 000 JETONS'
         },
       ]
 }
