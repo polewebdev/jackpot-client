@@ -55,98 +55,31 @@ export class GameComponent implements OnInit{
   }
 
   checkCombinations(): void {
-      const isCitronCombination = this.checkcombinaison.checkCombinaisons(
+    const combinations = [
+      { image: '../../assets/citron.png', points: 2000 },
+      { image: '../../assets/cerise.png', points: 1000 },
+      { image: '../../assets/bar.png', points: 100000 },
+      { image: '../../assets/cloche.png', points: 3000 },
+      { image: '../../assets/coeur.png', points: 5000 },
+      { image: '../../assets/sept.png', points: 1000000 },
+      { image: '../../assets/pièce.png', points: 500000 },
+      { image: '../../assets/raisin.png', points: 4000 },
+      { image: '../../assets/violet.png', points: 6000 },
+      { image: '../../assets/fer.png', points: 7000 }
+    ]
+
+    for (const combination of combinations) {
+      const isCombination = this.checkcombinaison.checkCombinaisons(
         this.leftelements,
         this.centerelements,
         this.rightelements,
-        '../../assets/citron.png'
+        combination.image
       )
-      const isCeriseCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/cerise.png'
-      );
-      const isBarCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/bar.png'
-      );
-      const isClocheCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/cloche.png'
-      );
-      const isCoeurCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/coeur.png'
-      );
-      const isSeptCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/sept.png'
-      );
-      const isPieceCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/pièce.png'
-      );
-      const isRaisinCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/raisin.png'
-      );
-      const isVioletCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/violet.png'
-      );
-      const isFerCombination = this.checkcombinaison.checkCombinaisons(
-        this.leftelements,
-        this.centerelements,
-        this.rightelements,
-        '../../assets/fer.png'
-      );
-  
-  
-      if (isCitronCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 2000
+
+      if (isCombination) {
+        this.slotNumbersElement += combination.points
       }
-      if (isCeriseCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 1000
-      }
-      if (isBarCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 100000
-      }
-      if (isClocheCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 3000
-      }
-      if (isCoeurCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 5000
-      }
-      if (isSeptCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 1000000
-      }
-      if (isPieceCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 500000
-      }
-      if (isRaisinCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 4000
-      }
-      if (isVioletCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 6000
-      }
-      if (isFerCombination) {
-        this.slotNumbersElement = this.slotNumbersElement + 7000
-      }
+    }
   }
 
   moveElements(): void {
@@ -157,7 +90,7 @@ export class GameComponent implements OnInit{
     this.elapsedTime += 700
     if (this.elapsedTime >= this.totalTime) {
         clearInterval(this.intervalID)
-        // this.checkCombinations()
+        this.checkCombinations()
       }
     }
 
@@ -180,7 +113,6 @@ export class GameComponent implements OnInit{
     this.isLeftSpinning = true
     setTimeout(() => {
       this.isLeftSpinning = false
-      this.checkCombinations()
     }, leftDelay);
     
     this.isCenterSpinning = true
@@ -192,15 +124,15 @@ export class GameComponent implements OnInit{
     setTimeout(() => {
       this.isRightSpinning = false
       this.isAnimationInProgress = false
-      this.checkCombinations()
     }, leftDelay + centerDelay + rightDelay);
     
     this.isAnimationInProgress = true
     this.isAnimationStarted = true
-    if (this.isAnimationStarted)
-    this.initializeAnimation()
+    if (this.isAnimationStarted) {
+      this.initializeAnimation()
+    }
   // this.slotNumbersElement -= 10
-}
+  }
 
 private shuffleArray(array: any): void {
   for (let i = array.length - 1; i > 0; i--) {

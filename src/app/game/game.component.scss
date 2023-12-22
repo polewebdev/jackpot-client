@@ -410,6 +410,9 @@ button.stop {
 
 .spinning {
     animation: spin 20ms linear infinite;
+    -webkit-will-change: transform;
+    -moz-will-change: transform;
+    will-change: transform;
 }
 
 

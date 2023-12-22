@@ -35,21 +35,21 @@
   </div>
   <div class="doors">
     <div class="door left">
-      <div class="boxes" [ngClass]="{'spinning': isLeftSpinning}">
+      <div class="boxes" [ngClass]="{'spinning': isLeftSpinning}" [style.will-change]="'transform'">
         <div class="box" *ngFor="let element of leftelements">
           <img [src]="element.imageURL" alt="Image {{element.id}}">
         </div>
       </div>
     </div>
     <div class="door center">
-      <div class="boxes" [ngClass]="{'spinning': isRightSpinning}">
+      <div class="boxes" [ngClass]="{'spinning': isRightSpinning}" [style.will-change]="'transform'">
         <div class="box" *ngFor="let element of rightelements">
           <img [src]="element.imageURL" alt="Image {{element.id}}">
         </div>
       </div>
     </div>
     <div class="door right">
-      <div class="boxes" [ngClass]="{'spinning': isCenterSpinning}">
+      <div class="boxes" [ngClass]="{'spinning': isCenterSpinning}" [style.will-change]="'transform'">
         <div class="box" *ngFor="let element of centerelements">
           <img [src]="element.imageURL" alt="Image {{element.id}}">
         </div>
