@@ -120,6 +120,30 @@ img {
     margin-bottom: 20px;
 }
 
+.auto {
+    font-size: 20px;
+    text-align:center;
+    display: inline-block;
+    margin:0px;
+    font-weight: bold;
+    padding: 0px 0 10px 10px ;
+    background-color: rgb(205, 199, 73);
+    text-shadow: 4px 4px black, 3px 3px rgb(182, 182, 182);
+    color: white;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    border: 3px solid rgb(123, 103, 13);
+    box-shadow: 0 .2em rgb(138, 113, 13);
+    cursor: pointer;
+    position: relative;
+    width: 100px;
+    position: absolute;
+    top: 79%; left: 51.5%;
+    z-index: 1;
+}
+
 .play {
     font-size: 30px;
     text-align:center;

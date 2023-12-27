@@ -15,10 +15,15 @@ export class GameComponent implements OnInit{
   audio: HTMLAudioElement | null = null
   volume: number = 0.5
   centerStopIndex: number = 0
+  isAutoMode: boolean = false
   rightStopIndex: number = 0
   showHelp: boolean = false
   showEarningsTable: boolean = false
   private isAnimationInProgress: boolean = false
+  private delayBetweenAutoTours: number = 3000
+  isAutoModeInProgress: boolean = false
+  private timeSinceLastCombination: number = 0
+  private resetScoreDelay: number = 10000
   private elapsedTime: number = 0
   private intervalID: any
   private totalTime: number = 7000
@@ -28,6 +33,7 @@ export class GameComponent implements OnInit{
   leftelements: leftElements[] = []
   centerelements: centerElements[] = []
   rightelements: rightElements[] = []
+  private lastCombinationTime: number = 0
   displayElements: (rightElements | centerElements | leftElements)[] = []
 
   constructor(private elementService: ElementsServices, private checkcombinaison: Combinaisons) {
@@ -50,11 +56,19 @@ export class GameComponent implements OnInit{
     this.showHelp = !this.showHelp
   }
 
+  launchModeAuto(): void {
+    if (!this.isAutoModeInProgress) {
+      this.toggleAutoMode()
+    } else {
+      this.stopAnimation()
+    }
+  }
+
   forEarningsTable(): void {
     this.showEarningsTable = !this.showEarningsTable
   }
 
-  checkCombinations(): void {
+  checkCombinations(): boolean {
     const combinations = [
       { image: '../../assets/citron.png', points: 2000 },
       { image: '../../assets/cerise.png', points: 1000 },
@@ -78,8 +92,12 @@ export class GameComponent implements OnInit{
 
       if (isCombination) {
         this.slotNumbersElement += combination.points
+        this.timeSinceLastCombination = 0
+        return true
       }
     }
+
+    return false
   }
 
   moveElements(): void {
@@ -90,7 +108,7 @@ export class GameComponent implements OnInit{
     this.elapsedTime += 700
     if (this.elapsedTime >= this.totalTime) {
         clearInterval(this.intervalID)
-        this.checkCombinations()
+        // this.checkCombinations()
       }
     }
 
@@ -102,10 +120,47 @@ export class GameComponent implements OnInit{
 
     this.intervalID = setInterval(() => {
       this.moveElements()
+      if (this.elapsedTime >= this.totalTime) {
+        clearInterval(this.intervalID)
+        this.checkCombinations()
+      }
     }, 100);
   }
 
+  toggleAutoMode(): void {
+    this.isAutoModeInProgress = true
+    this.isAutoMode = !this.isAutoMode;
+  
+    if (this.isAutoMode) {
+      console.log('automode')
+      this.startAutoTours();
+    } else {
+      this.stopAnimation();
+    }
+  }
+  
+  private startAutoTours(): void {
+    this.autoMoveElements();
+  }
+  
+  private autoMoveElements(): void {
+    const playRound = () => {
+      this.startAnimation();
+      this.elapsedTime = 0;
+  
+      setTimeout(() => {
+        this.stopAnimation();
+        setTimeout(() => {
+          playRound();
+        }, this.delayBetweenAutoTours);
+      }, this.totalTime);
+    };
+  
+    playRound();
+  }
+
   startAnimation(): void {
+    this.isAnimationStarted = true
     const leftDelay = 2000
     const centerDelay = 3000
     const rightDelay = 4000
@@ -127,17 +182,16 @@ export class GameComponent implements OnInit{
     }, leftDelay + centerDelay + rightDelay);
     
     this.isAnimationInProgress = true
-    this.isAnimationStarted = true
     if (this.isAnimationStarted) {
       this.initializeAnimation()
     }
   // this.slotNumbersElement -= 10
   }
 
-private shuffleArray(array: any): void {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]
+  private shuffleArray(array: any): void {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]
     }
   }
 

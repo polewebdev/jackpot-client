@@ -2,6 +2,7 @@
   <h1 class="title">QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
   <button routerLink="/home" class="back"><h2>BACK</h2></button>
   <button class="gain" (click)="forEarningsTable()">$</button>
+  <button class="auto" (click)="launchModeAuto()">AUTO</button>
   <div class="help">
     <button (click)="forHelp()">
       <h2>HELP</h2>
@@ -78,7 +79,6 @@
   </div>
   <button class='play' (click)="startAnimation()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">PLAY</button>
   <button class='stop' (click)="stopAnimation()">STOP</button>
-  
 </body>
 <button class="music" (click)="playMusic()">
   <img *ngIf="audio && !audio.paused" src="../../assets/music_active.png" alt="Music Active"/>
