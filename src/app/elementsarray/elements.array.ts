@@ -152,7 +152,7 @@ export class elementsArray {
         {
           id: 5,
           imageURL: '../../assets/coeur.png',
-          gain: 'x3  4 000 JETONS'
+          gain: 'x3 4 000 JETONS'
         },
       ]
       gainElementRight: gainElementRight[] = [
@@ -164,7 +164,7 @@ export class elementsArray {
         {
           id: 2,
           imageURL: '../../assets/pièce.png',
-          gain: 'x3  500 000 JETONS'
+          gain: 'x3 500 000 JETONS'
         },
         {
           id: 3,

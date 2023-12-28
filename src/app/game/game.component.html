@@ -2,7 +2,9 @@
   <h1 class="title">QUI VEUT GAGNER <br>LE JACKPOT ?</h1>
   <button routerLink="/home" class="back"><h2>BACK</h2></button>
   <button class="gain" (click)="forEarningsTable()">$</button>
-  <button class="auto" (click)="launchModeAuto()">AUTO</button>
+  <button class="auto" (click)="launchModeAuto()">Auto</button>
+  <button id="mise-plus" (click)="increaseBet()">+</button>
+  <button id="mise-moins" (click)="decreaseBet()">-</button>
   <div class="help">
     <button (click)="forHelp()">
       <h2>HELP</h2>
@@ -27,8 +29,12 @@
       <div id="slot-frame">
         <div id="slot-frame-2">
           <div id="slot-numbers">
-            <h2>****VOTRE GAIN****</h2>
+            <h2>SOLDE BANCAIRE:</h2>
             <p>{{ slotNumbersElement }}</p>
+          </div>
+          <div id="slot-mise">
+            <h2>MISE</h2>
+            <p>{{slotMise}}</p>
           </div>
         </div>
       </div>

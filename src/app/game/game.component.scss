@@ -33,9 +33,10 @@ button.back {
 button.music {
     font-size: 20px;
     background-color: transparent;
-    z-index: 100;
+    z-index: 1;
     position: relative;
     top: 890px; left: 50px;
+    width: 5%;
 }
 
 button.quit-tableau {
@@ -172,7 +173,7 @@ img {
         background-color: black;
         box-sizing: border-box;
         padding: 20px;
-        box-shadow: rgb(239, 236, 236) 3px 3px 7px ;
+        box-shadow: rgb(239, 236, 236) 3px 3px 7px;
         margin-right: 20px;
         outline: none;
         font-size: 20px;
@@ -367,9 +368,9 @@ button.stop {
 }
 
 #slot-numbers {
-    width: 50%; height: 30%;
+    width: 30%; height: 25%;
     position: relative;
-    top: 60px; left: 3%;
+    top: 40px; left: 3%;
     background-color: black;
     border: 1px solid aqua;
     border-radius: 5px;
@@ -384,19 +385,79 @@ button.stop {
 #slot-numbers h2 {
     color: gold;
     position: relative;
-    top: -60px;
-    text-align: center;
+    top: -50px;
+    text-align: left;
     font-family: 'Casino Shadow', sans-serif;
-    font-size: 40px;
+    font-size: 25px;
 }
 
 #slot-numbers p {
     color: #78FF00;
     font-weight: bold;
     z-index: 2;
-    font-size: 30px;
+    font-size: 28px;
     position: relative;
-    top: -90px; left: 135px;
+    top: -75px; left: 110px;
+}
+
+#slot-mise {
+    width: 10%; height: 20%;
+    position: relative;
+    top: 60px; left: 38%;
+    background-color: black;
+    border: 1px solid aqua;
+    border-radius: 5px;
+    background: -moz-linear-gradient(top, #1b1b1b 0%, #383838 8%, #3a3a3a 20%, #0a0a0a 47%, #010101 50%, #0d0d0d 54%, #444444 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1b1b1b), color-stop(8%,#383838), color-stop(20%,#3a3a3a), color-stop(47%,#0a0a0a), color-stop(50%,#010101), color-stop(54%,#0d0d0d), color-stop(100%,#444444));
+    background: -webkit-linear-gradient(top, #1b1b1b 0%,#383838 8%,#3a3a3a 20%,#0a0a0a 47%,#010101 50%,#0d0d0d 54%,#444444 100%);
+    background: -o-linear-gradient(top, #1b1b1b 0%,#383838 8%,#3a3a3a 20%,#0a0a0a 47%,#010101 50%,#0d0d0d 54%,#444444 100%);
+    background: -ms-linear-gradient(top, #1b1b1b 0%,#383838 8%,#3a3a3a 20%,#0a0a0a 47%,#010101 50%,#0d0d0d 54%,#444444 100%);
+    background: linear-gradient(to bottom, #1b1b1b 0%,#383838 8%,#3a3a3a 20%,#0a0a0a 47%,#010101 50%,#0d0d0d 54%,#444444 100%);
+}
+
+#slot-mise h2 {
+    color: gold;
+    position: relative;
+    top: -50px;
+    text-align: center;
+    font-family: 'Casino Shadow', sans-serif;
+    font-size: 25px;
+}
+
+#slot-mise p {
+    color: #78FF00;
+    font-weight: bold;
+    z-index: 2;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    top: -65px; left: 0px;
+}
+
+#mise-plus {
+    color: aqua;
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 652px; left: 743px;
+    box-shadow: rgb(0, 242, 255) 3px 3px 1px;
+    border: 1px solid aqua;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+#mise-moins {
+    color: aqua;
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 652px; left: 830px;
+    box-shadow: rgb(0, 242, 255) 3px 3px 1px;
+    border: 1px solid aqua;
+    border-radius: 2px;
+    z-index: 1;
 }
 
 .doors {
